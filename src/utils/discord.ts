@@ -12,7 +12,7 @@ export class DiscordError extends Error {
 export const generateBlogContent = (blog: Blog): string => `
 # 🐰💭♡ ${blog.author.name} (${blog.author.kana})
 💌✨☆ **[${blog.title}](${blog.url})**
-📅⏰♫ ${japaneseTimeStyle(blog.time)} (🇯🇵) 〜✧✦〜 ${japaneseTimeStyle(blog.time, 9)} (🇮🇩)
+📅⏰♫ ${japaneseTimeStyle(blog.time, 9)} (🇯🇵) 〜✧✦〜 ${japaneseTimeStyle(blog.time, 7)} (🇮🇩)
 `
 
 export const generateGreetingCardContent = (card: GreetingCard): string => `
