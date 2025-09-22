@@ -28,6 +28,6 @@ export const config: Config = {
   app: {
     baseUrl: BASE_URL,
     stateFile: "last_seen.json",
-    memberIds: [34, 36],
+    memberIds: [27, 33, 34, 36],
   },
 };
