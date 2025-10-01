@@ -58,3 +58,14 @@ export const imageSrcParser = (
     throw new ParserError(`❌ Parse Element: failed to parse ${identifier}`, error)
   }
 }
+
+export const kanjiNameParser = (
+  $: cheerio.CheerioAPI,
+  memberId: number,
+  identifier: string,
+): string => {
+  const element = $(identifier).contents().first()
+  if (element.length === 0) throw new ParserError(`❌ Member ${memberId}: no ${identifier} found on the page`)
+
+  return textParser(element.text())
+}
