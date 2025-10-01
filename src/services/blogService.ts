@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio"
-import { getFirstElement, kanjiNameParser } from "../utils/element"
+import { getFirstElement, getFirstContentElement } from "../utils/element"
 import { config } from "../config"
 import { httpClient } from "../utils/http"
 import { notifyToDiscord } from "./discordService"
@@ -20,7 +20,7 @@ export const getLatestBlog = async (memberId: number): Promise<Blog> => {
 		const $: cheerio.CheerioAPI = cheerio.load(html)
 
 		const link: string = getFirstElement($, memberId, config.blog.entry, true).link!
-		const name: string = kanjiNameParser($, memberId, config.blog.author.name)
+		const name: string = getFirstContentElement($, memberId, config.blog.author.name)
 		const kana: string = getFirstElement($, memberId, config.blog.author.kana).text
 		const title: string = getFirstElement($, memberId, config.blog.title).text
 		const time: string = getFirstElement($, memberId, config.blog.postedAt).text

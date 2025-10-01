@@ -51,7 +51,7 @@ export const getElementImageSrc = ($: cheerio.CheerioAPI, identifier: string): s
 	}
 }
 
-export const kanjiNameParser = ($: cheerio.CheerioAPI, memberId: number, identifier: string): string => {
+export const getFirstContentElement = ($: cheerio.CheerioAPI, memberId: number, identifier: string): string => {
 	const element = $(identifier).contents().first()
 	if (element.length === 0) throw new ParserError(`❌ Member ${memberId}: no ${identifier} found on the page`)
 

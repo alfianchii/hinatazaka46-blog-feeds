@@ -2,7 +2,7 @@ import * as cheerio from "cheerio"
 import { httpClient } from "../utils/http"
 import { log } from "../utils/logger"
 import { notifyToDiscord } from "./discordService"
-import { getFirstElement, getElementImageSrc, kanjiNameParser } from "../utils/element"
+import { getFirstElement, getElementImageSrc, getFirstContentElement } from "../utils/element"
 import { config } from "../config"
 import { generateGreetingCardContent, generateGreetingCardEmbeds } from "../utils/discord"
 import { getCurrentJktMonth, isWithinJktDayRange } from "../utils/date"
@@ -21,7 +21,7 @@ export const getLatestGreetingCard = async (memberId: number): Promise<GreetingC
 		const $: cheerio.CheerioAPI = cheerio.load(html)
 
 		const cardSrc: string = getElementImageSrc($, config.greetingCard.card)
-		const name: string = kanjiNameParser($, memberId, config.greetingCard.author.name)
+		const name: string = getFirstContentElement($, memberId, config.greetingCard.author.name)
 		const kana: string = getFirstElement($, memberId, config.greetingCard.author.kana).text
 		const month: number = getCurrentJktMonth()
 
